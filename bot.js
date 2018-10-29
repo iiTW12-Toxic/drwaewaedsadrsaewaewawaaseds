@@ -237,8 +237,6 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 
 });
 
-});
-
 client.on("message", message => {
   if (message.author.bot) return;
 
