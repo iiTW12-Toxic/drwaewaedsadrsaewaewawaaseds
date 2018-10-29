@@ -753,10 +753,6 @@ message.channel.send(embed);
       message.author.sendEmbed(Embed11)
     }
 });
-client.on("guildCreate", guild => {
-  console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
-});
-
 
 const arraySort = require('array-sort'),
       table = require('table');
@@ -870,7 +866,6 @@ client.on('message', async message => {
             }
           })
 client.on('message', message => {
-
 
            if (message.content.startsWith(prefix + "id")) {
            if (message.channel.id !== "504662027327766548" , "504711957299855360") return;
