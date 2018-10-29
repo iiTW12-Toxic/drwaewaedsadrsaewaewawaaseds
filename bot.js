@@ -177,37 +177,65 @@ client.on('message', message => {
     }
 });
 
-client.on("message", message => {
-  if (message.author.bot) return;
 
-  let command = message.content.split(" ")[0];
+client.on('message', async message =>{
+  if (message.author.boss) return;
+	var prefix = "ts";
 
-  if (command === "ts!mute") {
-        if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
-  let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'mute-log');
-  let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
-  if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").catch(console.error);
-  if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').catch(console.error);
+if (!message.content.startsWith(prefix)) return;
+	let command = message.content.split(" ")[0];
+	 command = command.slice(prefix.length);
+	let args = message.content.split(" ").slice(1);
+	if (command == "mute") {
+		if (!message.channel.guild) return;
+		if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("انت لا تملك صلاحيات !! ").then(msg => msg.delete(5000));
+		if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
+		let user = message.mentions.users.first();
+		let muteRole = message.guild.roles.find("name", "Muted");
+		if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").then(msg => {msg.delete(5000)});
+		if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(5000)});
+		let reason = message.content.split(" ").slice(2).join(" ");
+		message.guild.member(user).addRole(muteRole);
+		const muteembed = new Discord.RichEmbed()
+		.setColor("RANDOM")
+		.setAuthor(`Muted!`, user.displayAvatarURL)
+		.setThumbnail(user.displayAvatarURL)
+		.addField("**:busts_in_silhouette:  المستخدم**",  '**[ ' + `${user.tag}` + ' ]**',true)
+		.addField("**:hammer:  تم بواسطة **", '**[ ' + `${message.author.tag}` + ' ]**',true)
+		.addField("**:book:  السبب**", '**[ ' + `${reason}` + ' ]**',true)
+		.addField("User", user, true)
+		message.channel.send({embed : muteembed});
+		var muteembeddm = new Discord.RichEmbed()
+		.setAuthor(`Muted!`, user.displayAvatarURL)
+		.setDescription(`      
+${user} انت معاقب بميوت كتابي بسبب مخالفة القوانين
+${message.author.tag} تمت معاقبتك بواسطة
+[ ${reason} ] : السبب
+اذا كانت العقوبة عن طريق الخطأ تكلم مع المسؤلين
+`)
+		.setFooter(`في سيرفر : ${message.guild.name}`)
+		.setColor("RANDOM")
+	user.send( muteembeddm);
+  }
+if(command === `unmute`) {
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("**ما عندي برمشن**").then(msg => msg.delete(6000))
 
-  const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
-    .setTimestamp()
-    .addField('الأستعمال:', 'اسكت/احكي')
-    .addField('تم ميوت:', `${user.username}#${user.discriminator} (${user.id})`)
-    .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
+  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
 
-   if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** لا يوجد لدي برمشن Manage Roles **').catch(console.error);
+  let role = message.guild.roles.find (r => r.name === "Muted");
+  
+  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
 
-  if (message.guild.member(user).roles.has(muteRole.id)) {
-     return message.reply("** تم اعطاء العضو المحدد ميوت  **").catch(console.error);
-  } else {
-    message.guild.member(user).addRole(muteRole).then(() => {
-      return message.reply("** تم اعطاء العضو المحدد ميوت كتابي .. **").catch(console.error);
-    });
+  await toMute.removeRole(role)
+  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
+
+  return;
+
   }
 
-};
+});
 
 });
 
@@ -727,122 +755,19 @@ message.channel.send(embed);
       message.author.sendEmbed(Embed11)
     }
 });
-
-//
-client.on('message', message => {
-  if (message.author.iiTz) return;
-  if (!message.content.startsWith(prefix)) return;
-  var command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-  var args = message.content.split(" ").slice(1);
-  if (command == "kick") {
-   if(!message.channel.guild) return message.reply('** This command only for servers**');
-  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
-  var user = message.mentions.users.first();
-  var reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if(!reason) return message.reply ("**اكتب سبب الطرد**");
-  if (!message.guild.member(user).kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
-  const kickembed = new Discord.RichEmbed()
-  .setAuthor(`KICKED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  message.channel.send({embed : kickembed})
-  user.send(reason).then(()=>{
-message.guild.member(user).kick();
-  })
-}
+var antispam = require("anti-spam");//npm i anti-spam
+ 
+antispam(client, {
+  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
+  maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
+  interval: 1000, // مقدار الوقت قبل حصول باند
+  warningMessage: "stop spamming.", // رسالة تحذير اذا سوا سبام!
+  roleMessage: "Muted!! تم اعطاء العضو ميوت", // الرسالة الي تجي اذا شخص اخذ ميوت
+  roleName: "Muted", // اسم رتبة الميوت
+  maxDuplicatesWarning: 10, // عدد الرسايل الي قبل التحذيرات
+  maxDuplicatesBan: 15, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
+  time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
-
-//
-//
-
-//
-const ms = require("ms");
-
-const fs = require('fs');
-
-var user = {};
-var warn = {};
-
-client.on('message', function(message) {
-
-    	 if (!message.channel.guild) return;
-let muteRole1 = message.guild.roles.find("name", "Muted");
-     if (!muteRole1) return;
-
-  if (message.author.id == client.user.id) return;
-  if(JSON.stringify(user).indexOf(message.author.id) == -1) {
-    user[message.author.id] = message.createdTimestamp;
-    return;
-  } else {
-    if (Date.now() - user[message.author.id] < 695){
-              message.author.delete
-
-      if (JSON.stringify(warn).indexOf(message.author.id) == -1) {
-        warn[message.author.id] = 1;
-      } else {
-        warn[message.author.id]++;
-        message.author.delete
-      }
-      if (warn[message.author.id] < 4) {
-        message.author.delete
-
-      }
-      delete user[message.author.id];
-              message.author.delete
-
-    } else {
-      delete user[message.author.id];
-              message.author.delete
-
-    }
-  }
-  if (warn[message.author.id] == 4) {
-     if (!message.channel.guild) return;
-             message.author.delete
-
-let muteRole1 = message.guild.roles.find("name", "Muted");
-     if (!muteRole1) return;
-    var guild = message.channel.guild;
-          var currentTime = new Date(),
-                   Year = currentTime.getFullYear(),
-            Month = currentTime.getMonth() + 1,
-            Day = currentTime.getDate(),
-hours = currentTime.getHours() + 3 ,
-            minutes = currentTime.getMinutes()+1,
-            seconds = currentTime.getSeconds();
-
-           if (!message.channel.guild) return;
-     if (!muteRole1) return;
-    var guild = message.channel.guild;
-    message.guild.members.get(message.author.id).addRole(muteRole1);
-
-     var msg;
-        msg = parseInt();
-
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-
-delete warn[message.author.id];
-    delete user[message.author.id];
-	const embed500 = new Discord.RichEmbed()
-     .setTitle(`المرسل ${message.author.username}#${message.author.discriminator} `)
-      .setDescription(":white_check_mark:  | `محاولة السبام`\n\nالاسم:\n"+`${message.author.username}#${message.author.discriminator}`+"\nالعقوبة:\n  MuteChat / ميوت كتابي\n")
-      .setFooter("Anti - Spam")
-      .setColor("c91616")
-    message.channel.send(embed500)
-    	const embed20 = new Discord.RichEmbed()
-      .setTitle(":scales: | تمت معاقبتك")
-      .setDescription(`**:small_blue_diamond:لقد قمت بمخالفة قوانين السيرفر**\n \n:gun: : نوع العقوبه\nMuteChat / ميوت كتابي\n:clock1: وقت وتاريخ العقوبه:\n`+ Year + "/" + Month + "/" + Day +', '+hours +'-' +minutes+'-'+seconds+"\n \n \n`في حال كانت العقوبة بالغلط, تواصل مع الادارة`")
-          .setFooter("Anti - Spam")
-      .setColor("c91616")
-
-     message.author.send(embed20)
-
-  }
 });
 //
 //
