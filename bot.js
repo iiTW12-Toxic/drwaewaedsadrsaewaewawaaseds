@@ -562,7 +562,7 @@ client.on('guildMemberAdd', member => {
     let channel = member.guild.channels.find('name', 'chat');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
-           if (message.channel.id !== "505106653159358464") return;
+           if (message.channel.id !== "505106653159358464");
 
                 message.guild.fetchInvites().then(invs => {
       let member = client.guilds.get(message.guild.id).members.get(message.author.id);
