@@ -600,24 +600,6 @@ var mentionned = message.mentions.members.first();
 })
      });
 
-     .setFooter(`${member.guild.name}`)
-        .setTimestamp()
-
-      channel.sendEmbed(embed);
-    });
-
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
-        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField(':bust_in_silhouette:   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('RED')
-        .setFooter(`====ولكم منور السيرفر اتمنا لك الاستمتاع====`, 'https://media.discordapp.net/attachments/499333346153725953/500834836081278976/x.png')
-
-    var channel =member.guild.channels.find('name', 'chat')
-    });
 
 client.on('message', message => {
 if (message.content.startsWith(prefix + "servers")) {
