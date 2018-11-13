@@ -900,7 +900,7 @@ client.on('message' , async (message) => {
     }
 });
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","- TS"));
+    member.addRole(member.guild.roles.find("name","- TS."));
     });
 var dat = JSON.parse(fs.readFileSync('./invite.json', 'utf8'));
 function forEachObject(obj, func) {
