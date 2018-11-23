@@ -25,19 +25,34 @@ client.on('ready', () => {
   console.log('')
   console.log('')
 });
-client.on('message', msg => {
-var prefix = "ts!";//البرفكس
-  var args = msg.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-if (msg.author.bot) return;
-if(msg.content.startsWith(prefix + "setstream")) {
-      if(msg.author.id != "285236833804222464") return msg.reply("هذا الامر لصحاب الحساب");
-      client.user.setGame(`${argresult}`,"http://twitch.tv/S-F")
-      var Die = new Discord.RichEmbed()
-      .setTitle("✅تم تغير الستريمنق الخاص بك")
-     .addField("New Stream",`${argresult}`, true)
-     msg.channel.sendEmbed(Die);
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+
+const adminprefix = "!";
+const devs = ['285236833804222464','285236833804222464'];
+client.on('message', message => {
+  var argresult = message.content.split(` `).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setgame')) {
+  client.user.setGame(argresult);
+  message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+} else 
+  if (message.content.startsWith(adminprefix + 'setname')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
+} else
+  if (message.content.startsWith(adminprefix + 'setavatar')) {
+client.user.setAvatar(argresult);
+    message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+      } else     
+if (message.content.startsWith(adminprefix + 'sett')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");//
+ message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
 }
 });
+
+client.login(process.env.BOT_TOKEN);
 
 client.login(process.env.BOT_TOKEN);
