@@ -25,9 +25,6 @@ client.on('ready', () => {
   console.log('')
   console.log('')
 });
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
 
 const adminprefix = "!";
 const devs = ['285236833804222464','285236833804222464'];
