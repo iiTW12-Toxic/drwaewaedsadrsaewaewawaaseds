@@ -28,7 +28,7 @@ client.on('ready', () => {
 var prefix = "ts!";
 var adminprefix = 'ts!'
 
-const developers = ["285236833804222464","285236833804222464"]
+const developers = ["285236833804222464","id"]
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
