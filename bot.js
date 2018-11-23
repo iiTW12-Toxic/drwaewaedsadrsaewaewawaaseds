@@ -52,7 +52,4 @@ if (message.content.startsWith(adminprefix + 'sett')) {
  message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
 }
 });
-
-client.login(process.env.BOT_TOKEN);
-
 client.login(process.env.BOT_TOKEN);
