@@ -25,40 +25,18 @@ client.on('ready', () => {
   console.log('')
   console.log('')
 });
-var prefix = "ts!";
-var adminprefix = 'ts!'
-
-const developers = ["285236833804222464","id"]
-client.on('message', message => {
-    var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!developers.includes(message.author.id)) return;
-      
-  if (message.content.startsWith(adminprefix + 'setg')) {
-    client.user.setGame(argresult);
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-     if (message.content === (adminprefix + "leave")) {
-    message.guild.leave();        
-  } else  
-  if (message.content.startsWith(adminprefix + 'setw')) {
-  client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'setl')) {
-  client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'sets')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/dream");
-      message.channel.send(`**✅   ${argresult}**`)
-  }
-  if (message.content.startsWith(adminprefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.send(`Changing The Name To ..**${argresult}** `)
-} else
-if (message.content.startsWith(adminprefix + 'setava')) {
-  client.user.setAvatar(argresult);
-    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+client.on('message', msg => {
+var prefix = "ts!";//البرفكس
+  var args = msg.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+if (msg.author.bot) return;
+if(msg.content.startsWith(prefix + "setstream")) {
+      if(msg.author.id != "285236833804222464") return msg.reply("هذا الامر لصحاب الحساب");
+      client.user.setGame(`${argresult}`,"http://twitch.tv/S-F")
+      var Die = new Discord.RichEmbed()
+      .setTitle("✅تم تغير الستريمنق الخاص بك")
+     .addField("New Stream",`${argresult}`, true)
+     msg.channel.sendEmbed(Die);
 }
 });
 
