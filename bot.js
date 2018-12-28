@@ -57,7 +57,7 @@ client.on("message", message => {
 
 ❖ pg!image  ➾ شعار السيرفر
 
-❖ pg!stapg ➾ معلومات عن البوت سرعة البوت والخادم ايضا
+❖ pg!stats ➾ معلومات عن البوت سرعة البوت والخادم ايضا
 
 ❖ pg!id ➾ اي دي
 
@@ -69,9 +69,12 @@ client.on("message", message => {
 
 ❖ pg!server ➾ معلومات السيرفر
 
+
+
+
 ╔[❖══════════════════════════════════❖]╗
 
-شكرا لي استخدامك بوتنا ♥
+Thanks to use The Bot
 
 ╚[❖══════════════════════════════════❖]╝
 **
@@ -91,19 +94,42 @@ client.on('message', message => {
 
   .setColor("RANDOM")
   .addField('``سرعة أتصال الــبوت`` ' , `${Date.now() - message.createdTimestamp}` + ' ms`')
-                 .setFooter(` pg  Bot
+                 .setFooter(` ts  Bot
  .`, 'https://a.top4top.net/p_829o87y51.png')
 
   message.channel.sendEmbed(embed);
     }
 });
 //
+
+
+  client.on("message", message => {
+    var prefix = "tststststst!";
+
+            var args = message.content.substring(prefix.length).split(" ");
+            if (message.content.startsWith(prefix + "clear")) {
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **لا يوجد لديك صلاحية لمسح الشات**');
+        var msg;
+        msg = parseInt();
+
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "Done | تــم مسح الشات",
+        color: 0x06DF00,
+        description: "تم مسح الرسائل ",
+        footer: {
+        }
+      }}).then(msg => {msg.delete(3000)});
+                          }
+
+});
+//
 client.on('message', message => {
-    if (message.content.starpgWith("pg!stapg")) {
+    if (message.content.startsWith("pg!stats")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setColor('RANDOM')
-            .setTitle('Stapg Bot / Info ')
+            .setTitle('Stats Bot / Info ')
             .addField('``Uptime``', timeCon(process.uptime()), true)
             .addField('``Ping Is``' , `${Date.now() - message.createdTimestamp}` + '``Ms``', true)
             .addField('``RAM Usage``', `${(process.memoryUsage().rss / 1048576).toFixed()}MB`, true)
@@ -112,7 +138,7 @@ client.on('message', message => {
             .addField('``Users rout``' ,`${client.users.size}` , true)
             .addField('``Name Bot Or tag``' , `${client.user.tag}` , true)
             .addField('``Bot Id``' , `${client.user.id}` , true)
-            .setFooter('! pg Team')
+            .setFooter('! ts Team')
     })
 }
 });
@@ -132,7 +158,7 @@ function timeCon(time) {
 
 //
 client.on('message', message => {
-    if (message.content.starpgWith("pg!avatar")) {
+    if (message.content.startsWith("pg!avatar")) {
         var mentionned = message.mentions.users.first();
     var iiTzK;
       if(mentionned){
@@ -151,9 +177,9 @@ client.on('message', message => {
 
 client.on('message', async message =>{
   if (message.author.boss) return;
-	var prefix = "pg";
+	var prefix = "ts";
 
-if (!message.content.starpgWith(prefix)) return;
+if (!message.content.startsWith(prefix)) return;
 	let command = message.content.split(" ")[0];
 	 command = command.slice(prefix.length);
 	let args = message.content.split(" ").slice(1);
@@ -171,7 +197,7 @@ if (!message.content.starpgWith(prefix)) return;
 		.setColor("RANDOM")
 		.setAuthor(`Muted!`, user.displayAvatarURL)
 		.setThumbnail(user.displayAvatarURL)
-		.addField("**:buspg_in_silhouette:  المستخدم**",  '**[ ' + `${user.tag}` + ' ]**',true)
+		.addField("**:busts_in_silhouette:  المستخدم**",  '**[ ' + `${user.tag}` + ' ]**',true)
 		.addField("**:hammer:  تم بواسطة **", '**[ ' + `${message.author.tag}` + ' ]**',true)
 		.addField("**:book:  السبب**", '**[ ' + `${reason}` + ' ]**',true)
 		.addField("User", user, true)
@@ -243,7 +269,7 @@ client.on("message", message => {
 
 client.on('message', message => {
   if (message.author.bot) return;
-  if (!message.content.starpgWith(prefix)) return;
+  if (!message.content.startsWith(prefix)) return;
 
   let command = message.content.split(" ")[0];
   command = command.slice(prefix.length);
@@ -301,7 +327,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.starpgWith("pg!avatar")) {
+    if (message.content.startsWith("pg!avatar")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -318,24 +344,24 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-if (message.content.starpgWith(prefix + "pg!servers")) {
+if (message.content.startsWith(prefix + "pg!servers")) {
          if(!message.author.id === '285236833804222464') return;
 var gimg;
 var gname;
 var gmemb;
-var gbopg;
+var gbots;
 var groles;
 var servers = client.guilds;
 servers.forEach((g)=>{
 gname = g.name;
 gimg = g.iconURL;
 gmemb = g.members.size;
-gbopg = g.members.filter(m=>m.bot).size;
+gbots = g.members.filter(m=>m.bot).size;
 groles = g.roles.map(r=> {return r.name});
 let serv = new Discord.RichEmbed()
 .setAuthor(gname,gimg)
 .setThumbnail(gimg)
-.addField('Server bopg',gbopg)
+.addField('Server bots',gbots)
 .addField('Server Member Count',gmemb = g.members.size)
 .setColor('RANDOM')
 message.channel.send(`
@@ -379,7 +405,7 @@ client.on('message', message => {
             hours3 = currentTime.getHours() + 2 ,
             hours4 = currentTime.getHours() + 3 ,
             minutes = currentTime.getMinutes(),
-            seconds = currentTime.gepgeconds(),
+            seconds = currentTime.getSeconds(),
             Year = currentTime.getFullYear(),
             Month = currentTime.getMonth() + 1,
             Day = currentTime.getDate();
@@ -557,25 +583,26 @@ client.on('message', message => {
     message.channel.send(id)
 }       });
 
+
 client.on('message', message => {
-if (message.content.starpgWith(prefix + "servers")) {
+if (message.content.startsWith(prefix + "servers")) {
          if(!message.author.id === '285236833804222464') return;
 var gimg;
 var gname;
 var gmemb;
-var gbopg;
+var gbots;
 var groles;
 var servers = client.guilds;
 servers.forEach((g)=>{
 gname = g.name;
 gimg = g.iconURL;
 gmemb = g.members.size;
-gbopg = g.members.filter(m=>m.bot).size;
+gbots = g.members.filter(m=>m.bot).size;
 groles = g.roles.map(r=> {return r.name});
 let serv = new Discord.RichEmbed()
 .setAuthor(gname,gimg)
 .setThumbnail(gimg)
-.addField('Server bopg',gbopg)
+.addField('Server bots',gbots)
 .addField('Server Member Count',gmemb = g.members.size)
 .setColor('RANDOM')
 message.channel.send(`
@@ -590,19 +617,19 @@ Server MemberCount : **${gmemb} **
 client.on('message', message => {
 var prefix = "pg!";
 
-  if (!message.content.starpgWith(prefix)) return;
+  if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
   if (message.author.id == 410835593451405312) return;
 
 
-if (message.content.starpgWith(prefix + 'name')) {
+if (message.content.startsWith(prefix + 'name')) {
   if (message.author.id !== '285236833804222464') return message.reply('**only for the botowner **')
   client.user.setUsername(argresult).then
       message.channel.sendMessage(`**${argresult}** : done`)
 } else
 
-if (message.content.starpgWith(prefix + 'streem')) {
+if (message.content.startsWith(prefix + 'streem')) {
   if (message.author.id !== '285236833804222464') return message.reply('**only for the botowner **')
 client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
     message.channel.sendMessage(`**${argresult}** streem changed to`)
@@ -612,7 +639,7 @@ client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
 
 
 
-if (message.content.starpgWith(prefix + 'watch')) {
+if (message.content.startsWith(prefix + 'watch')) {
   if (message.author.id !== '285236833804222464') return message.reply('**only for the botowner **')
     client.user.setActivity(argresult, {type : 'watching'});
  message.channel.sendMessage(`**${argresult}** : Watching changed to`)
@@ -625,19 +652,19 @@ if (message.content.starpgWith(prefix + 'watch')) {
 client.on('message', message => {
 var prefix = "pg!";
 
-  if (!message.content.starpgWith(prefix)) return;
+  if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
   if (message.author.id == 410835593451405312) return;
 
 
-if (message.content.starpgWith(prefix + 'name')) {
+if (message.content.startsWith(prefix + 'name')) {
   if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
   client.user.setUsername(argresult).then
       message.channel.sendMessage(`**${argresult}** : done`)
 } else
 
-if (message.content.starpgWith(prefix + 'streem')) {
+if (message.content.startsWith(prefix + 'streem')) {
   if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
 client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
     message.channel.sendMessage(`**${argresult}** streem changed to`)
@@ -647,7 +674,7 @@ client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
 
 
 
-if (message.content.starpgWith(prefix + 'watch')) {
+if (message.content.startsWith(prefix + 'watch')) {
   if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
     client.user.setActivity(argresult, {type : 'watching'});
  message.channel.sendMessage(`**${argresult}** : Watching changed to`)
@@ -661,7 +688,7 @@ if (message.content.starpgWith(prefix + 'watch')) {
 client.on('message' , message => {
 
 if (message.author.bot) return;
-if (message.content.starpgWith(prefix + "rep")) {
+if (message.content.startsWith(prefix + "rep")) {
     message.react("👌")
 if (!message.channel.guild) return;
 
@@ -694,7 +721,7 @@ message.channel.send(embed);
 });
 //
  client.on('message', message => {
-    if (message.content.starpgWith("رابط")) {
+    if (message.content.startsWith("رابط")) {
         message.channel.createInvite({
         thing: true,
         maxUses: 1,
@@ -775,7 +802,7 @@ let muteRole1 = message.guild.roles.find("name", "Muted");
             Day = currentTime.getDate(),
 hours = currentTime.getHours() + 3 ,
             minutes = currentTime.getMinutes()+1,
-            seconds = currentTime.gepgeconds();
+            seconds = currentTime.getSeconds();
 
            if (!message.channel.guild) return;
      if (!muteRole1) return;
@@ -816,7 +843,7 @@ const arraySort = require('array-sort'),
 
 client.on('message' , async (message) => {
 
-    if(message.content.starpgWith(prefix + "دعوات")) {
+    if(message.content.startsWith(prefix + "دعوات")) {
 
   let invites = await message.guild.fetchInvites();
 
@@ -843,7 +870,7 @@ client.on('message' , async (message) => {
 
 client.on('message' , async (message) => {
 
-    if(message.content.starpgWith(prefix + "topinvite")) {
+    if(message.content.startsWith(prefix + "topinvite")) {
 
   let invites = await message.guild.fetchInvites();
 
@@ -863,7 +890,24 @@ client.on('message' , async (message) => {
     message.channel.send(embed)
     }
 });
-
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","- TS."));
+    });
+var dat = JSON.parse(fs.readFileSync('./invite.json', 'utf8'));
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
+}
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("500055636181123073")
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
 client.on("guildMemberAdd", (member) => {
     let channel = member.guild.channels.find('name', 'chat');
     if (!channel) {
@@ -889,9 +933,69 @@ client.on("guildMemberAdd", (member) => {
         })
     })
 });
- 
+
+client.on('message', async message => {
+  if(message.content.startsWith(prefix + "sugg")) {
+  await  message.channel.send(`اكتب اقتراحك الان`)
+    let filter = m => m.author.id === message.author.id
+      var text = '';
+        let sugsa = message.channel.awaitMessages(filter, { max: 1, time: 60000})
+          .then(co => {
+            text = co.first().content
+
+              message.channel.send(`تم حفظ اقتراحك الرجاء انتضار الرد من قبل الاداره`)
+                client.channels.get("501882221016252416").send(`${message.author.username}'s sug => ${text}`)
+
+              })
+            }
+          })
 client.on('message', message => {
-   if(message.content.starpgWith(prefix + "invite")) {
+
+           if (message.content.startsWith(prefix + "id")) {
+           if (message.channel.id !== "504662027327766548" , "504711957299855360") return;
+            if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
+
+                message.guild.fetchInvites().then(invs => {
+      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+      var moment = require('moment');
+      var args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+ var heg;
+ if(men) {
+     heg = men
+ } else {
+     heg = message.author
+ }
+var mentionned = message.mentions.members.first();
+  var h;
+ if(mentionned) {
+     h = mentionned
+ } else {
+     h = message.member
+ }
+        moment.locale('ar-TN');
+      var id = new  Discord.RichEmbed()
+
+    .setColor("#0a0909")
+ .setThumbnail(message.author.avatarURL)
+.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true)
+.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
+.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
+
+
+.setFooter(message.author.username, message.author.avatarURL)
+    message.channel.sendEmbed(id);
+})
+}
+
+
+
+     });
+client.on('message', message => {
+   if(message.content.startsWith(prefix + "invite")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
@@ -917,9 +1021,9 @@ client.on("message", message => {
 	var args = message.content.split(' ').slice(1);
 	var msg = message.content.toLowerCase();
 	if( !message.guild ) return;
-	if( !msg.starpgWith( prefix + 'role' ) ) return;
+	if( !msg.startsWith( prefix + 'role' ) ) return;
 	if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
-	if( msg.toLowerCase().starpgWith( prefix + 'roleremove' ) ){
+	if( msg.toLowerCase().startsWith( prefix + 'roleremove' ) ){
 		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
 		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
 		var role = msg.split(' ').slice(2).join(" ").toLowerCase();
@@ -931,7 +1035,7 @@ client.on("message", message => {
 		if( args[0].toLowerCase() == "all" ){
 			message.guild.members.forEach(m=>m.removeRole( role1 ))
 			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
-		} else if( args[0].toLowerCase() == "bopg" ){
+		} else if( args[0].toLowerCase() == "bots" ){
 			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
 			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
 		} else if( args[0].toLowerCase() == "humans" ){
@@ -950,7 +1054,7 @@ client.on("message", message => {
 		if( args[0].toLowerCase() == "all" ){
 			message.guild.members.forEach(m=>m.addRole( role1 ))
 			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
-		} else if( args[0].toLowerCase() == "bopg" ){
+		} else if( args[0].toLowerCase() == "bots" ){
 			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
 			return	message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
 		} else if( args[0].toLowerCase() == "humans" ){
@@ -1035,5 +1139,4 @@ Dat = currentTime.getDate()
   });
   }
 });
-
 client.login(process.env.BOT_TOKEN);
