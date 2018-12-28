@@ -1134,4 +1134,47 @@ channel.guild.owner.send(`<@!${channelcreate.id}>
  channelc[channelcreate.id].created = 0;
   },Otime)
   });
+
+client.on('message', function(message) {
+    if (message.channel.type === "dm") {
+        if (message.author.id === client.user.id) return;
+        var norElden = new Discord.RichEmbed()
+            .setColor('RANDOM')
+            .setTimestamp()
+            .setTitle('نشوف وش يقولون')
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
+            .setFooter(`المرسل
+[@${message.author.tag}]`)
+        client.channels.get("528353611227463720").send({ embed: norElden });
+    }
+});
+
+client.on('message', message => {
+if(message.author.bot) return;
+    var name1 = message.mentions.users.first();
+    var reason = message.content.split(' ').slice(2).join(' ');
+    if(message.content.startsWith(prefix + 'report')) {
+        if(message.author.bot) return;
+        if(!message.guild.channels.find('name', 'الابلاغات')) return message.channel.send('**نرجوا عمل روم باسم الابلاغات كي توصل الابلاغات له**').then(msg => msg.delete(5000));
+    if(!name1) return message.reply('**:innocent:منشن:innocent:**').then(msg => msg.delete(3000))
+        message.delete();
+    if(!reason) return message.reply('**:innocent:وش سوى؟:innocent:**').then(msg => msg.delete(3000))
+        message.delete();
+    var abod = new Discord.RichEmbed()
+    .setTitle(`بلاغ من قبل: ${message.author.tag}`)
+    .addField('**المجرم:**', `${name1}`, true)
+    .addField('**بروم:**', `${message.channel.name}`, true)
+    .addField('**البلاغ:**', `${reason}`, true)
+    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+    .setTimestamp()
+        message.guild.channels.find('name', 'الابلاغات').sendEmbed(abod)
+    message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
+    }
+});
+client.on("guildMemberAdd", member => {
+    let channel = member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀');
+  return channel.send(`/tts Welcome To Pro Gameing`) 
+}).catch(console.error)
+});
 client.login(process.env.BOT_TOKEN);
