@@ -28,7 +28,7 @@ client.on('ready', () => {
 });
 
 client.on("message", message => {
-     if (message.content === "pg!help") {
+     if (message.content === "help") {
          message.react('👌')
          if(!message.channel.guild) return message.reply('** This command only for servers **');
         message.reply("** تم الاريسال فـ الخاص :heavy_check_mark: **")
@@ -36,7 +36,7 @@ client.on("message", message => {
 });
 
 client.on("message", message => {
- if (message.content === "pg!help") {
+ if (message.content === "help") {
   const embed = new Discord.RichEmbed()
       .setColor("#ffff00")
       .setThumbnail(message.author.avatarURL)
@@ -51,23 +51,23 @@ client.on("message", message => {
                     اوامر عامة
 ╚[❖════════════❖]╝
 
-❖ pg!members ➾ معلومات الاعضاء
+❖ members ➾ معلومات الاعضاء
 
-❖ pg!avatar ➾ شعار حسابك
+❖ avatar ➾ شعار حسابك
 
-❖ pg!image  ➾ شعار السيرفر
+❖ image  ➾ شعار السيرفر
 
-❖ pg!stats ➾ معلومات عن البوت سرعة البوت والخادم ايضا
+❖ stats ➾ معلومات عن البوت سرعة البوت والخادم ايضا
 
-❖ pg!id ➾ اي دي
+❖ id ➾ اي دي
 
-❖ pg!Date ➾ التاريخ
+❖ Date ➾ التاريخ
 
-❖ pg!ping ➾ عرض سرعه اتصال البوت
+❖ ping ➾ عرض سرعه اتصال البوت
 
-❖ pg!bot ➾ معلومات البوت
+❖ bot ➾ معلومات البوت
 
-❖ pg!server ➾ معلومات السيرفر
+❖ server ➾ معلومات السيرفر
 
 
 
@@ -89,7 +89,7 @@ message.author.sendEmbed(embed)
 
 //
 client.on('message', message => {
-     if (message.content === "pg!ping") {
+     if (message.content === "ping") {
       const embed = new Discord.RichEmbed()
 
   .setColor("RANDOM")
@@ -125,7 +125,7 @@ client.on('message', message => {
 });
 //
 client.on('message', message => {
-    if (message.content.startsWith("pg!stats")) {
+    if (message.content.startsWith("stats")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setColor('RANDOM')
@@ -158,7 +158,7 @@ function timeCon(time) {
 
 //
 client.on('message', message => {
-    if (message.content.startsWith("pg!avatar")) {
+    if (message.content.startsWith("avatar")) {
         var mentionned = message.mentions.users.first();
     var iiTzK;
       if(mentionned){
@@ -177,7 +177,6 @@ client.on('message', message => {
 
 client.on('message', async message =>{
   if (message.author.boss) return;
-	var prefix = "ts";
 
 if (!message.content.startsWith(prefix)) return;
 	let command = message.content.split(" ")[0];
@@ -239,7 +238,7 @@ client.on("message", message => {
 
   let command = message.content.split(" ")[0];
 
-  if (command === "pg!unmute") {
+  if (command === "unmute") {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
   let user = message.mentions.users.first();
   let modlog = client.channels.find('name', 'mute-log');
@@ -298,7 +297,7 @@ if (command == "embed") {
 });
 
 client.on('message', message => {
-    if (message.content == 'pg!server') {
+    if (message.content == 'server') {
         var servername = message.guild.name
         var اونر = message.guild.owner
         var اعضاء = message.guild.memberCount
@@ -327,7 +326,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("pg!avatar")) {
+    if (message.content.startsWith("avatar")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -344,7 +343,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-if (message.content.startsWith(prefix + "pg!servers")) {
+if (message.content.startsWith(prefix + "servers")) {
          if(!message.author.id === '285236833804222464') return;
 var gimg;
 var gname;
@@ -375,7 +374,6 @@ Server MemberCount : **${gmemb} **
 
 client.on('message', message => {  // ui
 if (!message.channel.guild) return;
-var prefix = "pg!";
   if (message.content ===  prefix + 'ui') {
 let user = message.mentions.users.first();
  if (!user) { user = message.author }
@@ -459,7 +457,7 @@ client.on('message', message => {
 });
 
 client.on("message", message => {
-    const prefix = "pg!"
+    
 
           if(!message.channel.guild) return;
    if(message.author.bot) return;
@@ -478,31 +476,31 @@ client.on("message", message => {
   });
 
 client.on('message', message => {
-   if (message.content === "pg!roll 1") {
+   if (message.content === "roll 1") {
   message.channel.sendMessage(Math.floor(Math.random() * 25));
     }
 });
 
 client.on('message', message => {
-   if (message.content === "pg!roll 2") {
+   if (message.content === "roll 2") {
   message.channel.sendMessage(Math.floor(Math.random() * 50));
     }
 });
 
 client.on('message', message => {
-   if (message.content === "pg!roll 3") {
+   if (message.content === "roll 3") {
   message.channel.sendMessage(Math.floor(Math.random() * 75));
     }
 });
 
 client.on('message', message => {
-   if (message.content === "pg!roll 4") {
+   if (message.content === "roll 4") {
   message.channel.sendMessage(Math.floor(Math.random() * 100));
     }
 });
 
 client.on('message', message => {
-     if (message.content === "pg!bot") {
+     if (message.content === "bot") {
             if(!message.channel.guild) return message.reply('** This command only for servers **');
      let embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -515,7 +513,7 @@ message.channel.sendEmbed(embed);
 });
 
 client.on('message', message => {
-    if(message.content == 'pg!members') {
+    if(message.content == 'members') {
        message.react(":white_check_mark:")
     const embed = new Discord.RichEmbed()
     .setDescription(`**Members info🔋
@@ -533,7 +531,7 @@ client.on('message', message => {
 
 client.on('message', message => {
   if (true) {
-if (message.content === 'pg!supp') {
+if (message.content === 'supp') {
       message.author.send(' |https://discord.gg/X8eVQTk| لـ أي استفسار').catch(e => console.log(e.stack));
 
     }
@@ -543,7 +541,7 @@ if (message.content === 'pg!supp') {
 
 
 client.on('message', message => {
-     if (message.content === "pg!supp") {
+     if (message.content === "supp") {
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#9B59B6")
@@ -615,7 +613,7 @@ Server MemberCount : **${gmemb} **
 });
 
 client.on('message', message => {
-var prefix = "pg!";
+
 
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
@@ -647,42 +645,7 @@ if (message.content.startsWith(prefix + 'watch')) {
 
 }
 
- });
-//
-client.on('message', message => {
-var prefix = "pg!";
-
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id == 410835593451405312) return;
-
-
-if (message.content.startsWith(prefix + 'name')) {
-  if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
-  client.user.setUsername(argresult).then
-      message.channel.sendMessage(`**${argresult}** : done`)
-} else
-
-if (message.content.startsWith(prefix + 'streem')) {
-  if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
-client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
-    message.channel.sendMessage(`**${argresult}** streem changed to`)
-    message.react("👌")
-
-} else
-
-
-
-if (message.content.startsWith(prefix + 'watch')) {
-  if (message.author.id !== '408136927259131905') return message.reply('**only for the botowner **')
-    client.user.setActivity(argresult, {type : 'watching'});
- message.channel.sendMessage(`**${argresult}** : Watching changed to`)
- message.react(":white_check_mark:")
-
-}
-
- });
+});
 
 
 client.on('message' , message => {
@@ -890,26 +853,9 @@ client.on('message' , async (message) => {
     message.channel.send(embed)
     }
 });
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","- TS."));
-    });
-var dat = JSON.parse(fs.readFileSync('./invite.json', 'utf8'));
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("500055636181123073")
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
-        })
-    })
-})
+
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.find('name', 'chat');
+    let channel = member.guild.channels.find('name', '💬𝙩𝙚𝙭𝙩');
     if (!channel) {
         console.log("!channel fails");
         return;
@@ -920,7 +866,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('made it till here!');
     var guild;
     while (!guild)
-        guild = client.guilds.get("500055636181123073")
+        guild = client.guilds.get("410849391885287424")
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -949,50 +895,34 @@ client.on('message', async message => {
               })
             }
           })
-client.on('message', message => {
-
-           if (message.content.startsWith(prefix + "id")) {
-           if (message.channel.id !== "504662027327766548" , "504711957299855360") return;
-            if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
+client.on('message', message => { 
+           if (message.content.startsWith(prefix + "ididid")) {
+     var args = message.content.split(" ").slice(1);
+     let user = message.mentions.users.first();
+     var men = message.mentions.users.first();
+        var heg;
+        if(men) {
+            heg = men
+        } else {
+            heg = message.author
+        }
+      var mentionned = message.mentions.members.first();
+         var h;
+        if(mentionned) {
+            h = mentionned
+        } else {
+            h = message.member
+        }
+               moment.locale('ar-TN');
       var id = new  Discord.RichEmbed()
-
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true)
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
-
-
-.setFooter(message.author.username, message.author.avatarURL)
-    message.channel.sendEmbed(id);
-})
-}
-
-
-
+      .setAuthor(message.author.username, message.author.avatarURL) 
+    .setColor("#707070")
+    .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
+    .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
+    .setFooter(`Last Bot`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
+    .setThumbnail(heg.avatarURL);
+    message.channel.send(id)
+}       
      });
 client.on('message', message => {
    if(message.content.startsWith(prefix + "invite")) {
@@ -1017,7 +947,7 @@ member.addRole(ALPHACODES[member.user.id].roles.shift());
 });
 
 client.on("message", message => {
-	var prefix = "pg!";
+
 	var args = message.content.split(' ').slice(1);
 	var msg = message.content.toLowerCase();
 	if( !message.guild ) return;
