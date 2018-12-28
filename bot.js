@@ -1173,8 +1173,23 @@ if(message.author.bot) return;
     }
 });
 client.on("guildMemberAdd", member => {
-    let channel = member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀');
-  return channel.send(`/tts Welcome To Pro Gameing`) 
+  member.createDM().then(function (channel) {
+  return channel.send(`/tts Welcome To ProGameing `) 
 }).catch(console.error)
+})
+
+
+client.on('guildMemberRemove', member => {
+    .setAuthor(member.user.username, member.user.avatarURL)
+    .setThumbnail(member.user.avatarURL)
+    .setTitle(`راح ورح`)
+    .setDescription(`:hearts:...نراك قريبا:hearts:`)
+    .addField(':sweat:الباقي',`**[ ${member.guild.memberCount} ]**`,true)
+    .setColor('RED')
+    .setFooter(`Bye..`, '')
+
+var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
+if (!channel) return;
+});
 
 client.login(process.env.BOT_TOKEN);
