@@ -1180,6 +1180,7 @@ client.on("guildMemberAdd", member => {
 
 
 client.on('guildMemberRemove', member => {
+    var embed = new Discord.RichEmbed()
     .setAuthor(member.user.username, member.user.avatarURL)
     .setThumbnail(member.user.avatarURL)
     .setTitle(`راح ورح`)
@@ -1190,6 +1191,7 @@ client.on('guildMemberRemove', member => {
 
 var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
 if (!channel) return;
+channel.send({embed : embed});
 });
 
 client.login(process.env.BOT_TOKEN);
