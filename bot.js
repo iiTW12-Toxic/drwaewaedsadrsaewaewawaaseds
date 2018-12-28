@@ -98,29 +98,6 @@ client.on('message', message => {
     }
 });
 //
-
-
-  client.on("message", message => {
-    var prefix = "pgpgpgpgpgt!";
-
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.starpgWith(prefix + "clear")) {
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **لا يوجد لديك صلاحية لمسح الشات**');
-        var msg;
-        msg = parseInt();
-
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "Done | تــم مسح الشات",
-        color: 0x06DF00,
-        description: "تم مسح الرسائل ",
-        footer: {
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-});
-//
 client.on('message', message => {
     if (message.content.starpgWith("pg!stapg")) {
     message.channel.send({
