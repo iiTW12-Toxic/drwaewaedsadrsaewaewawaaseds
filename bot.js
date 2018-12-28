@@ -1109,7 +1109,7 @@ console.log(error)
 });
  let channelc = {};
   client.on('channelCreate', async (channel) => {
-  const rebellog = client.channels.find("name", "log"),
+  const rebellog = client.channels.find("name", "❌log❌"),
   Oguild = channel.guild,
   Onumber = 10,
   Otime = 10000;
