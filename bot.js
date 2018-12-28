@@ -983,8 +983,6 @@ client.on("message", message => {
 	}
 });
 
-if(!prefix) var prefix = "pg!" ; // البرفكس 
-
 var stopReacord = true;
 var reactionRoles = [];
 var definedReactionRole = null;
