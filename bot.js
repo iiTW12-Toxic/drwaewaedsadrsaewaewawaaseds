@@ -1173,8 +1173,8 @@ if(message.author.bot) return;
     }
 });
 client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`/tts Welcome To ProGameing `) 
+var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
+return channel.send(`/tts Welcome To ProGameing `) 
 }).catch(console.error)
 })
 
