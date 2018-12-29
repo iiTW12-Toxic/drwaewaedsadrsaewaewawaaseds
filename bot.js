@@ -1198,6 +1198,7 @@ const setupCMD = "createrolemessage"
 let initialMessage = `**لكي تفعيل نفسك لازم تضغط على اي اموجي من دول لكي تفتحلك الرومات الخاصة بها - اذا كونت لا ترغب بي هذي الرتبة يمكنك ازالة الأموجي**`;
 const roles = ["@『𝑲𝑵𝑩𝑯』", "@『  𝒪𝒯𝒜𝒦𝒰 』", "@『 𝑴𝑼𝑺𝑰𝑪』", "@『𝑺𝑷𝑶𝑻𝑰𝑭𝒀』", "@『𝑼𝑵𝑻𝑬𝑺𝑻𝑬𝑫』", "@『 𝒴𝒪𝒰𝒯𝒰ℬℰℛ ▽ 』"];
 const reactions = ["🏠", "☠️", "🎧", "🎼", "🙏", "📹"];
+const botToken = "NTA1MTU1NDk5ODA5ODMyOTYx.DwmPrQ.KPm5ajEJGbar5jiPLgwfuiH3QDw";
 
 
 //If there isn't a reaction for every role, scold the user!
