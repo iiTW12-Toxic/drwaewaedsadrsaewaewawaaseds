@@ -1179,8 +1179,7 @@ client.on('guildMemberRemove', member => {
     .setThumbnail(member.user.avatarURL)
     .setTitle(`راح ورح`)
     .setDescription(`:hearts:...نراك قريبا:hearts:`)
-    .addField(':sweat:الباقي',`**[ ${member.guild.memberCount} ]**`,true)
-    .setColor('RED')
+    .setColor('RANDOM')
     .setFooter(`Bye..`, '')
 
 var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
