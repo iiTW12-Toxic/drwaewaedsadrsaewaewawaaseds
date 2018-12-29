@@ -1172,13 +1172,6 @@ if(message.author.bot) return;
     message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
     }
 });
-client.on("guildMemberAdd", member => {
-return channel.send(`/tts Welcome To ProGameing `) 
-var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
-if (!channel) return;
-}).catch(console.error)
-})
-
 
 client.on('guildMemberRemove', member => {
     var embed = new Discord.RichEmbed()
@@ -1194,5 +1187,11 @@ var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈�
 if (!channel) return;
 channel.send({embed : embed});
 });
+ 
+  client.on('guildMemberAdd', member => {
+    let channel = member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀');
+      if (!channel) return;
+        if( !channel ) return message.reply( '/tts welcome to progaming' );
+    });
 
 client.login(process.env.BOT_TOKEN);
