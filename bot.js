@@ -1173,7 +1173,7 @@ if(message.author.bot) return;
     }
 });
 const { RichEmbed } = require('discord.js');
-const ('discord.js') = require('../config');
+const Discord = require('../config');
 
 exports.run = async (client, message, args) => {
 
