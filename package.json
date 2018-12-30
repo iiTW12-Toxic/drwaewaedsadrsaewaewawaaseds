@@ -52,7 +52,7 @@
     "youtube-info": "^1.2.1",
     "ytdl-core": "^0.25.2",
     "zalgolize": "1.2.4"
-    "config": "^1.0.0",
+    "config"; "^1.0.0",
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
