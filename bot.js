@@ -1179,12 +1179,12 @@ exports.run = async (client, message, args) => {
 
     await message.delete().catch(O_o=>{});
 
-    const 🏠 = message.guild.roles.get('528397949890461707'); // Moderator
-    const ☠ = message.guild.roles.get('528397949890461707'); // KNBH
-    const 🎧 = message.guild.roles.get('528398101627666434'); // OTAKU
-    const 🎼 = message.guild.roles.get('528398101627666434'); // MUSIC
-    const 🙏 = message.guild.roles.get('528803252981202945'); // SPOTIFY
-    const 📹 = message.guild.roles.get('528803252981202945'); // YOUTUBER
+    const a = message.guild.roles.get('528397949890461707'); // Moderator
+    const b = message.guild.roles.get('528397949890461707'); // KNBH
+    const c = message.guild.roles.get('528398101627666434'); // OTAKU
+    const d = message.guild.roles.get('528398101627666434'); // MUSIC
+    const f = message.guild.roles.get('528803252981202945'); // SPOTIFY
+    const g = message.guild.roles.get('528803252981202945'); // YOUTUBER
     const filter = (reaction, user) => ['🏠', '☠', '🎧', '🎼', '🙏', '📹'].includes(reaction.emoji.name) && user.id === message.author.id;
 
     const embed = new RichEmbed()
