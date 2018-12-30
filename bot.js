@@ -1192,66 +1192,96 @@ channel.send({embed : embed});
       if (!channel) return;
         if( !channel ) return message.reply( '/tts welcome to progaming' );
     });
-const yourID = "285236833804222464"; //Instructions on how to get this: https://redd.it/40zgse
-const setupCMD = "createrolemessage"
-let initialMessage = `**لكي تفعيل نفسك لازم تضغط على اي اموجي من دول لكي تفتحلك الرومات الخاصة بها - اذا كونت لا ترغب بي هذي الرتبة يمكنك ازالة الأموجي**`;
-const roles = ["@『𝑲𝑵𝑩𝑯』", "@『  𝒪𝒯𝒜𝒦𝒰 』", "@『 𝑴𝑼𝑺𝑰𝑪』", "@『𝑺𝑷𝑶𝑻𝑰𝑭𝒀』", "@『𝑼𝑵𝑻𝑬𝑺𝑻𝑬𝑫』", "@『 𝒴𝒪𝒰𝒯𝒰ℬℰℛ ▽ 』"];
-const reactions = ["🏠", "☠️", "🎧", "🎼", "🙏", "📹"];
-const botToken = "NTA1MTU1NDk5ODA5ODMyOTYx.DwmPrQ.KPm5ajEJGbar5jiPLgwfuiH3QDw";
+const { RichEmbed } = require('discord.js');
+const { prefix } = require('../config');
 
+exports.run = async (client, message, args) => {
 
-//If there isn't a reaction for every role, scold the user!
-if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
+    await message.delete().catch(O_o=>{});
 
-//Function to generate the role messages, based on your settings
-function generateMessages(){
-    var messages = [];
-    messages.push(initialMessage);
-    for (let role of roles) messages.push(`React below to get the **"${role}"** role!`); //DONT CHANGE THIS
-    return messages;
-}
+    const 🏠 = message.guild.roles.get('528397949890461707'); // Moderator
+    const ☠ = message.guild.roles.get('528397949890461707'); // KNBH
+    const 🎧 = message.guild.roles.get('528398101627666434'); // OTAKU
+    const 🎼 = message.guild.roles.get('528398101627666434'); // MUSIC
+    const 🙏 = message.guild.roles.get('528803252981202945'); // SPOTIFY
+    const 📹 = message.guild.roles.get('528803252981202945'); // YOUTUBER
+    const filter = (reaction, user) => ['🏠', '☠', '🎧', '🎼', '🙏', '📹'].includes(reaction.emoji.name) && user.id === message.author.id;
 
-
-client.on("message", message => {
-    if (message.author.id == yourID && message.content.toLowerCase() == setupCMD){
-        var toSend = generateMessages();
-        let mappedArray = [[toSend[0], false], ...toSend.slice(1).map( (message, idx) => [message, reactions[idx]])];
-        for (let mapObj of mappedArray){
-            message.channel.send(mapObj[0]).then( sent => {
-                if (mapObj[1]){
-                  sent.react(mapObj[1]);  
-                } 
-            });
-        }
-    }
-})
-
-
-client.on('raw', event => {
-    if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
+    const embed = new RichEmbed()
+        .setTitle('Avaiilable Roles')
+        .setDescription(`
         
-        let channel = client.channels.get(event.d.channel_id);
-        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
-        let user = msg.guild.members.get(event.d.user_id);
+        🇦 ${a.toString()}
+        🇧 ${b.toString()}
+        🇨 ${c.toString()}
+        `)
+        .setColor(0xdd9323)
+        .setFooter(`ID: ${message.author.id}`);
         
-        if (msg.author.id == client.user.id && msg.content != initialMessage){
-       
-            var re = `\\*\\*"(.+)?(?="\\*\\*)`;
-            var role = msg.content.match(re)[1];
-        
-            if (user.id != client.user.id){
-                var roleObj = msg.guild.roles.find(r => r.name === role);
-                var memberObj = msg.guild.members.get(user.id);
-                
-                if (event.t === "MESSAGE_REACTION_ADD"){
-                    memberObj.addRole(roleObj)
-                } else {
-                    memberObj.removeRole(roleObj);
-                }
+    message.channel.send(embed).then(async msg => {
+
+        await msg.react('🏠');
+        await msg.react('☠');
+        await msg.react('🎧');
+        await msg.react('🎼');
+        await msg.react('🙏');
+        await msg.react('📹');
+
+        msg.awaitReactions(filter, {
+            max: 1,
+            time: 30000,
+            errors: ['time']
+        }).then(collected => {
+
+            const reaction = collected.first();
+
+            switch (reaction.emoji.name) {
+                case '🇦':
+                    if (message.member.roles.has(a.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(a).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${a.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
+                case '🇧':
+                    if (message.member.roles.has(b.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(b).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${b.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
+                case '🇨':
+                    if (message.member.roles.has(c.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(c).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${c.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
             }
-        }
-        })
- 
-    }   
-});
+        }).catch(collected => {
+            return message.channel.send(`I couldn't add you to this role!`);
+        });
+
+    });
+
+};
+
+exports.help = {
+    name: 'roles'
+};
 client.login(process.env.BOT_TOKEN);
