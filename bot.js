@@ -1236,7 +1236,7 @@ exports.run = async (client, message, args) => {
             const reaction = collected.first();
 
             switch (reaction.emoji.name) {
-                case '🇦':
+                case '🏠':
                     if (message.member.roles.has(a.id)) {
                         msg.delete(2000);
                         return message.channel.send('You are already in this role!').then(m => m.delete(3000));
@@ -1248,7 +1248,7 @@ exports.run = async (client, message, args) => {
                     message.channel.send(`You have been added to the **${a.name}** role!`).then(m => m.delete(3000));
                     msg.delete();
                     break;
-                case '🇧':
+                case '☠':
                     if (message.member.roles.has(b.id)) {
                         msg.delete(2000);
                         return message.channel.send('You are already in this role!').then(m => m.delete(3000));
@@ -1260,7 +1260,43 @@ exports.run = async (client, message, args) => {
                     message.channel.send(`You have been added to the **${b.name}** role!`).then(m => m.delete(3000));
                     msg.delete();
                     break;
-                case '🇨':
+                case '🎧':
+                    if (message.member.roles.has(c.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(c).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${c.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
+                case '🎼':
+                    if (message.member.roles.has(c.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(c).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${c.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
+                case '🙏':
+                    if (message.member.roles.has(c.id)) {
+                        msg.delete(2000);
+                        return message.channel.send('You are already in this role!').then(m => m.delete(3000));
+                    }
+                    message.member.addRole(c).catch(err => {
+                        console.log(err);
+                        return message.channel.send(`Error adding you to this role: **${err.message}**.`);
+                    });
+                    message.channel.send(`You have been added to the **${c.name}** role!`).then(m => m.delete(3000));
+                    msg.delete();
+                    break;
+                case '📹':
                     if (message.member.roles.has(c.id)) {
                         msg.delete(2000);
                         return message.channel.send('You are already in this role!').then(m => m.delete(3000));
