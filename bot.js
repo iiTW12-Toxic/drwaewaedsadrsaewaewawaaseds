@@ -1172,26 +1172,6 @@ if(message.author.bot) return;
     message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
     }
 });
-
-client.on('guildMemberRemove', member => {
-    var embed = new Discord.RichEmbed()
-    .setAuthor(member.user.username, member.user.avatarURL)
-    .setThumbnail(member.user.avatarURL)
-    .setTitle(`راح ورح`)
-    .setDescription(`:hearts:...نراك قريبا:hearts:`)
-    .setColor('RANDOM')
-    .setFooter(`Bye..`, '')
-
-var channel =member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀')
-if (!channel) return;
-channel.send({embed : embed});
-});
- 
-  client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '💞𝙒𝙀𝙇𝘾𝙊𝙈𝙀');
-      if (!channel) return;
-        if( !channel ) return message.reply( '/tts welcome to progaming' );
-    });
 const { RichEmbed } = require('discord.js');
 const { prefix } = require('../config');
 
