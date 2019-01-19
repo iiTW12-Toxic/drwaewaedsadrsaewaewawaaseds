@@ -1172,5 +1172,50 @@ if(message.author.bot) return;
     message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
     }
 });
+client.on('message', function(message) {
+    let messageArray = message.content.split(" ");
+    let args = messageArray[1]
+    if(message.content.startsWith(prefix + "cc")) {
+        //  if(Number(args) //== NaN) return message.reply(`Sry but its in numbers only no text`);
+         if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply('You have no perms.')
+        if(!args) return message.reply(`Pick a number`)
+      
+    let o;
+    for(o = 1; o < `${parseInt(args) + 1}`; ++o)
+    message.guild.createRole({name: `${o}`, color: "RANDOM"})
+    message.reply(`Im making the colors now.`)
+    // message.channel.send(`Now making the colors but if u made it like 1 it will be -1 , Q,E : If u made used the command and u typed in numbers \`${args}\` it will make one so it will be \`${--args}\``)
+}
+});
+client.on('message', message => {
+if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'move')) {
+ if (message.member.hasPermission("MOVE_MEMBERS")) {
+ if (message.mentions.users.size === 0) {
+ return message.channel.send("``لاستخدام الأمر اكتب هذه الأمر : " +prefix+ "move [USER]``")
+}
+if (message.member.voiceChannel != null) {
+ if (message.mentions.members.first().voiceChannel != null) {
+ var authorchannel = message.member.voiceChannelID;
+     var usermentioned = message.mentions.members.first().id;
+var embed = new Discord.RichEmbed()
+ .setTitle("Succes!")
+ .setColor("#000000")
+ .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
+var embed = new Discord.RichEmbed()
+.setTitle(`You are Moved in ${message.guild.name}`)
+ .setColor("RANDOM")
+.setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
+ message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+message.guild.members.get(usermentioned).send(embed)
+} else {
+message.channel.send("``لا تستطيع سحب "+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
+}
+} else {
+ message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
+}
+} else {
+message.react("❌")
+ }}});
 
 client.login(process.env.BOT_TOKEN);
